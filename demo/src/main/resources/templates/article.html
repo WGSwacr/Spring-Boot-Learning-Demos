@@ -17,12 +17,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="article:${t_article}">
+                <tr th:each="article, stat:${article}">
                     <td th:text="${article.id}"></td>
                     <td th:text="${article.author}"></td>
                     <td th:text="${article.content}"></td>
                     <td th:text="${article.type}"></td>
-                    <td></td>
+                    <td th:text="${article.update_time}"></td>
                 </tr>
                 
             </tbody>
