@@ -1,11 +1,16 @@
 package com.example.demo.Dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.example.demo.Model.T_User;
 
+@Repository
 public class UserDaoImplement implements UserDao{
 
     @Autowired
@@ -35,4 +40,8 @@ public class UserDaoImplement implements UserDao{
         new Object[]{id}, new BeanPropertyRowMapper<T_User>(T_User.class));
     }
     
+    @Override
+    public List<Map<String, Object>> listUser() {
+        return jdbcTemplate.queryForList("SELECT * FROM t_user");
+    }
 }
