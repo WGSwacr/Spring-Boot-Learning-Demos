@@ -35,9 +35,9 @@ public class ArticleDaoImplement implements ArticleDao {
     }
 
     @Override
-    public T_Article findArticleById(String id) {
+    public T_Article findArticleById(Integer id) {
         return jdbcTemplate.queryForObject("SELECT * FROM t_article WHERE id=?",
-        new Object[]{id}, new BeanPropertyRowMapper<T_Article>(T_Article.class));
+        new BeanPropertyRowMapper<T_Article>(T_Article.class), new Object[]{id});
     }
 
     @Override

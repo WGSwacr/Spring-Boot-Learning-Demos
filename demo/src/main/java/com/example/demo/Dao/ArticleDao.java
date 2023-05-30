@@ -10,7 +10,7 @@ public interface ArticleDao {
     int addArticle(T_Article t_Article);
     int updateArticle(T_Article t_Article);
     int deleteArticle(T_Article t_Article);
-    T_Article findArticleById(String id);
+    T_Article findArticleById(Integer id);
 
     List<Map<String, Object>> listArticle();
 }

@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.*;
 public interface ArticleMapper {
     
     @Select("SELECT * FROM t_article WHERE id=#{id}")
-    public T_Article seleArticle(Integer id);
+    public T_Article selectArticle(Integer id);
 
     @Insert("INSERT INTO t_article(author, content, type) values(#{author}, #{content}, #{type})")
     public int insertArticle(T_Article article);
@@ -16,5 +16,5 @@ public interface ArticleMapper {
     public int updateArticle(T_Article article);
 
     @Delete("DELETE FROM t_article WHERE id=#{id}")
-    public int deleteArticle(T_Article article);
+    public int deleteArticle(Integer id);
 }

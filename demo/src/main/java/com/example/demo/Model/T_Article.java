@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 @Builder
 public class T_Article {
     
-    private String id;
+    private Integer id;
     private String author;
     private String content;
     private String type;
