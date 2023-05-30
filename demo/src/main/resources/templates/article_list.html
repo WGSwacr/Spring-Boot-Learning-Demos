@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>Articles</h1>
-        <div th:if="${flag=='list'}">
+        <div th:if="${flag=='list'&&articleList!=null}">
             <p>List Articles</p>
             <table>
                 <thead>
@@ -32,7 +32,7 @@
                 </tbody>
             </table>
         </div>
-        <div th:if="${flag!='list'}">
+        <div th:if="${flag!='list'||articleList==null}">
             <p>Unknown error.</p>
         </div>
     </body>

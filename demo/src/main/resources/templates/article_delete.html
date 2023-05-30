@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Test</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1>Articles</h1>
+        <div th:if="${flag=='delete'&&article!=null}">
+            <p>Delete Article</p>
+            <form method="POST" th:action="@{'/article/delete/' + ${id}}">
+                <p th:text="'Author: ' + ${article.author}"></p>
+                <p th:text="'Content: ' + ${article.content}"></p>
+                <p th:text="'Type: ' + ${article.type}"></p>
+                <p>Note: this action cannot be recovered, be careful!</p>
+                <input type="submit", value="delete">
+            </form>
+            <p th:if="${success==1}">success!</p>
+        </div>
+        <div th:if="${flag!='delete'||article==null}">
+            <p>Unknown error.</p>
+        </div>
+    </body>
+</html>

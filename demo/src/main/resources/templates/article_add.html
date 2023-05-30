@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Test</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1>Articles</h1>
+        <div th:if="${flag=='add'}">
+            <p>Add Article</p>
+            <form method="POST" th:action="@{/article/add}">
+                <label>Author</label>
+                <input type="text", name="author">
+                <label>Content</label>
+                <input type="text", name="content">
+                <label>Type</label>
+                <input type="text", name="type">
+                <input type="submit", value="add">
+            </form>
+            <p th:if="${success==1}">success!</p>
+        </div>
+        <div th:if="${flag!='add'}">
+            <p>Unknown error.</p>
+        </div>
+    </body>
+</html>

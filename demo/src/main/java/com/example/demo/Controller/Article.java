@@ -30,7 +30,7 @@ public class Article {
     @GetMapping("/test")
     @ResponseBody
     public T_Article articleTest() {
-        return articleMapper.selectArticle(4);
+        return null;
     }
     
     @GetMapping("/list")
@@ -44,7 +44,7 @@ public class Article {
     @GetMapping("/add")
     public String addArticle(ModelMap map) {
         map.addAttribute("flag", "add");
-        return "article";
+        return "article_add";
     }
 
     @PostMapping("/add")
@@ -53,7 +53,7 @@ public class Article {
         int success = articleDaoImplement.addArticle(t_Article);
         map.addAttribute("success", success);
         map.addAttribute("flag", "add");
-        return "article";
+        return "article_add";
     }
 
     @GetMapping("/update/{id}")
@@ -61,7 +61,7 @@ public class Article {
         T_Article t_Article = articleMapper.selectArticle(id);
         map.addAttribute("article", t_Article);
         map.addAttribute("flag", "update");
-        return "article";
+        return "article_update";
     }
 
     @PostMapping("/update/{id}")
@@ -72,22 +72,24 @@ public class Article {
         map.addAttribute("article", new_t_Article);
         map.addAttribute("success", success);
         map.addAttribute("flag", "update");
-        return "article";
+        return "article_update";
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteArticle(ModelMap map, Integer id) {
-        T_Article t_Article = articleDaoImplement.findArticleById(id);
+    public String deleteArticle(ModelMap map, @PathVariable Integer id) {
+        T_Article t_Article = articleMapper.selectArticle(id);
         map.addAttribute("article", t_Article);
         map.addAttribute("flag", "delete");
-        return "article";
+        return "article_delete";
     }
 
     @PostMapping("/delete/{id}")
-    public String deleteArticleDone(ModelMap map, Integer id) {
+    public String deleteArticleDone(ModelMap map, @PathVariable Integer id) {
+        T_Article new_t_Article = articleMapper.selectArticle(id);
         int success = articleDaoImplement.deleteArticle(T_Article.builder().id(id).build());
+        map.addAttribute("article", new_t_Article);
         map.addAttribute("success", success);
-        map.addAttribute("flag", "update");
-        return "article";
+        map.addAttribute("flag", "delete");
+        return "article_delete";
     }
 }
