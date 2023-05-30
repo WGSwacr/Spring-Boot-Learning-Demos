@@ -41,6 +41,14 @@ public class Article {
         return "article_list";
     }
 
+    @GetMapping("/detail/{id}")
+    public String articleDetail(ModelMap map, @PathVariable Integer id) {
+        T_Article t_Article = articleMapper.selectArticle(id);
+        map.addAttribute("article", t_Article);
+        map.addAttribute("flag", "detail");
+        return "article_detail";
+    }
+
     @GetMapping("/add")
     public String addArticle(ModelMap map) {
         map.addAttribute("flag", "add");

@@ -6,8 +6,8 @@
     </head>
     <body>
         <h1>Articles</h1>
-        <div th:if="${flag=='list'&&articleList!=null}">
-            <p>List Articles</p>
+        <div th:if="${flag=='detail'&&article!=null}">
+            <p>Article Detail</p>
             <table>
                 <thead>
                     <tr>
@@ -17,23 +17,24 @@
                         <th>Type</th>
                         <th>Create At</th>
                         <th>Update At</th>
-                        <th>Action</th>
+                        <th colspan="2">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="article, stat:${articleList}">
+                    <tr th:each="article, stat:${article}">
                         <td th:text="${article.id}"></td>
                         <td th:text="${article.author}"></td>
                         <td th:text="${article.content}"></td>
                         <td th:text="${article.type}"></td>
                         <td th:text="${article.create_time}"></td>
                         <td th:text="${article.update_time}"></td>
-                        <td><a th:href="@{'/article/detail/' + ${article.id}}">Detail</a></td>
+                        <td><a th:href="@{'/article/update/' + ${id}}">Update</a></td>
+                        <td><a th:href="@{'/article/delete/' + ${id}}">Delete</a></td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div th:if="${flag!='list'||articleList==null}">
+        <div th:if="${flag!='detail'||article==null}">
             <p>Unknown error.</p>
         </div>
     </body>
