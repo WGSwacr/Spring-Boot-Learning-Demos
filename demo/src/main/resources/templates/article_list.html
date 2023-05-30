@@ -32,29 +32,8 @@
                 </tbody>
             </table>
         </div>
-        <div th:if="${flag=='add'}">
-            <p>Add Article</p>
-            <form method="POST" th:action="@{/article/add}">
-                <label>Author</label>
-                <input type="text", name="author">
-                <label>Content</label>
-                <input type="text", name="content">
-                <label>Type</label>
-                <input type="text", name="type">
-                <input type="submit", value="add">
-            </form>
-            <p th:if="${success==1}">success!</p>
-        </div>
-        <div th:if="${flag=='update'&&article!=null}">
-            <p>Update Article</p>
-            <form method="POST" th:action="@{'/article/update/' + ${id}}">
-                <p th:text="'Author: ' + ${article.author}"></p>
-                <label>Content:</label>
-                <input type="text" name="content" th:value="${article.content}">
-                <p th:text="'Type: ' + ${article.type}"></p>
-                <input type="submit", value="update">
-            </form>
-            <p th:if="${success==1}">success!</p>
+        <div th:if="${flag!='list'}">
+            <p>Unknown error.</p>
         </div>
     </body>
 </html>

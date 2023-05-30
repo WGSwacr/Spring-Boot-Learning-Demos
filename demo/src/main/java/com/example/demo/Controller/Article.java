@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,7 +38,7 @@ public class Article {
         List<Map<String, Object>> articleList = articleDaoImplement.listArticle();
         map.addAttribute("articleList", articleList);
         map.addAttribute("flag", "list");
-        return "article";
+        return "article_list";
     }
 
     @GetMapping("/add")
@@ -56,17 +57,19 @@ public class Article {
     }
 
     @GetMapping("/update/{id}")
-    public String updateArticle(ModelMap map, Integer id) {
-        T_Article t_Article = articleDaoImplement.findArticleById(id);
+    public String updateArticle(ModelMap map, @PathVariable Integer id) {
+        T_Article t_Article = articleMapper.selectArticle(id);
         map.addAttribute("article", t_Article);
         map.addAttribute("flag", "update");
         return "article";
     }
 
     @PostMapping("/update/{id}")
-    public String updateArticleDone(ModelMap map, Integer id, String content) {
+    public String updateArticleDone(ModelMap map, @PathVariable Integer id, String content) {
         T_Article t_Article = T_Article.builder().id(id).content(content).build();
-        int success = articleDaoImplement.addArticle(t_Article);
+        int success = articleDaoImplement.updateArticle(t_Article);
+        T_Article new_t_Article = articleMapper.selectArticle(id);
+        map.addAttribute("article", new_t_Article);
         map.addAttribute("success", success);
         map.addAttribute("flag", "update");
         return "article";
