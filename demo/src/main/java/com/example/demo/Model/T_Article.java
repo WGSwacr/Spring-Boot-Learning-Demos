@@ -12,7 +12,7 @@ public class T_Article {
     private Integer id;
     private String author;
     private String content;
-    private String type;
     private Timestamp create_time;
+    private String type;
     private Timestamp update_time;
 }
