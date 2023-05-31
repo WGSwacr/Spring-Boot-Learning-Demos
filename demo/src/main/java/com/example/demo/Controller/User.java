@@ -35,7 +35,7 @@ public class User {
 
     @GetMapping("/detail/{id}")
     public String userDetail(ModelMap map, @PathVariable Integer id) {
-        T_User t_User = userMapper.selectUser(id);
+        T_User t_User = userMapper.selectUserById(id);
         map.addAttribute("user", t_User);
         map.addAttribute("flag", "detail");
         return "user_detail";
@@ -58,7 +58,7 @@ public class User {
 
     @GetMapping("/update/{id}")
     public String updateUser(ModelMap map, @PathVariable Integer id) {
-        T_User t_User = userMapper.selectUser(id);
+        T_User t_User = userMapper.selectUserById(id);
         map.addAttribute("user", t_User);
         map.addAttribute("flag", "update");
         return "user_update";
@@ -68,7 +68,7 @@ public class User {
     public String updateUserDone(ModelMap map, @PathVariable Integer id, String password) {
         T_User t_User = T_User.builder().id(id).password(password).build();
         int success = userDaoImplement.updateUser(t_User);
-        T_User new_t_User = userMapper.selectUser(id);
+        T_User new_t_User = userMapper.selectUserById(id);
         map.addAttribute("user", new_t_User);
         map.addAttribute("success", success);
         map.addAttribute("flag", "update");
@@ -77,7 +77,7 @@ public class User {
 
     @GetMapping("/delete/{id}")
     public String deleteUser(ModelMap map, @PathVariable Integer id) {
-        T_User t_User = userMapper.selectUser(id);
+        T_User t_User = userMapper.selectUserById(id);
         map.addAttribute("user", t_User);
         map.addAttribute("flag", "delete");
         return "user_delete";
@@ -85,11 +85,25 @@ public class User {
 
     @PostMapping("/delete/{id}")
     public String deleteUserDone(ModelMap map, @PathVariable Integer id) {
-        T_User new_t_User = userMapper.selectUser(id);
+        T_User new_t_User = userMapper.selectUserById(id);
         int success = userDaoImplement.deleteUser(T_User.builder().id(id).build());
         map.addAttribute("user", new_t_User);
         map.addAttribute("success", success);
         map.addAttribute("flag", "delete");
         return "user_delete";
+    }
+
+    @GetMapping("/login")
+    public String login(ModelMap map) {
+        map.addAttribute("flag", "login");
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String loginDone(ModelMap map, String username, String password) throws Exception {
+        T_User t_User = T_User.builder().username(username).password(password).build();
+        map.addAttribute("success", userDaoImplement.login(t_User));
+        map.addAttribute("flag", "login");
+        return "login";
     }
 }

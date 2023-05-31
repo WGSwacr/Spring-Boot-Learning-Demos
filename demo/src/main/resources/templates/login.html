@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Test</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1>Login</h1>
+        <div class="user_login">
+            <form method="POST" th:action="@{/user/login}">
+                <label>Username</label>
+                <input type="text" name="username" required="required"/>
+                <label>Password</label>
+                <input type="password" name="password" required="required"/>
+                <input type="submit" value="Login"/ th:if="${success!=0}">
+                <input type="reset" value="Clear"/ th:if="${success!=0}">
+            </form>
+            <div th:if="${success==0}">
+                <p>success!</p>
+                <a th:href="@{/home}">Go to home.</a>
+            </div>
+            <div th:if="${success==1}">
+                <p>login failed: username or password not correct.</p>
+            </div>
+            <div th:if="${success==2}">
+                <p>login failed: user does not exist.</p>
+            </div>
+        </div>
+    </body>
+</html>
