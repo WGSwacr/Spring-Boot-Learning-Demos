@@ -6,13 +6,18 @@
     </head>
     <body>
         <h1>Home Page</h1>
-        <form method="POST">
-            <label>Username</label>
-            <input type="text" name="username" required="required"/>
-            <label>Password</label>
-            <input type="password" name="password" required="required"/>
-            <input type="submit" value="Login"/>
-            <input type="reset" value="Clear"/>
-        </form>
+        <div class="user_login">
+            <form method="POST">
+                <label>Username</label>
+                <input type="text" name="username" required="required"/>
+                <label>Password</label>
+                <input type="password" name="password" required="required"/>
+                <input type="submit" value="Login"/>
+                <input type="reset" value="Clear"/>
+            </form>
+        </div>
+        <div class="article_list">
+            <a th:href="@{/article/list}">Article list</a>
+        </div>
     </body>
 </html>

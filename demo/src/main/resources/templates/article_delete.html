@@ -13,9 +13,12 @@
                 <p th:text="'Content: ' + ${article.content}"></p>
                 <p th:text="'Type: ' + ${article.type}"></p>
                 <p>Note: this action cannot be recovered, be careful!</p>
-                <input type="submit", value="delete">
+                <input type="submit" value="delete" th:if="${success!=1}">
             </form>
-            <p th:if="${success==1}">success!</p>
+            <div th:if="${success==1}">
+                <p>success!</p>
+                <a th:href="@{/article/list}">Go back to list.</a>
+            </div>
         </div>
         <div th:if="${flag!='delete'||article==null}">
             <p>Unknown error.</p>

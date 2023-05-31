@@ -13,9 +13,12 @@
                 <label>Content:</label>
                 <input type="text" name="content" th:value="${article.content}">
                 <p th:text="'Type: ' + ${article.type}"></p>
-                <input type="submit", value="update">
+                <input type="submit", value="update" th:if="${success!=1}">
             </form>
-            <p th:if="${success==1}">success!</p>
+            <div th:if="${success==1}">
+                <p>success!</p>
+                <a th:href="@{/article/list}">Go back to list.</a>
+            </div>
         </div>
         <div th:if="${flag!='update'||article==null}">
             <p>Unknown error.</p>
