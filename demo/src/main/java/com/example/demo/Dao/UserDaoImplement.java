@@ -35,7 +35,7 @@ public class UserDaoImplement implements UserDao{
     }
 
     @Override
-    public T_User findUserById(int id) {
+    public T_User findUserById(Integer id) {
         return jdbcTemplate.queryForObject("SELECT * FROM t_user WHERE id=?",
         new BeanPropertyRowMapper<T_User>(T_User.class), new Object[]{id});
     }
