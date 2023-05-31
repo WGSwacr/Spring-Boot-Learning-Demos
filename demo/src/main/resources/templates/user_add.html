@@ -5,21 +5,19 @@
         <meta charset="UTF-8">
     </head>
     <body>
-        <h1>Articles</h1>
+        <h1>Users</h1>
         <div th:if="${flag=='add'}">
-            <p>Add Article</p>
-            <form method="POST" th:action="@{/article/add}">
-                <label>Author</label>
-                <input type="text", name="author">
-                <label>Content</label>
-                <input type="text", name="content">
-                <label>Type</label>
-                <input type="text", name="type">
+            <p>Add User</p>
+            <form method="POST" th:action="@{/user/add}">
+                <label>Username</label>
+                <input type="text", name="username">
+                <label>Password</label>
+                <input type="password", name="password">
                 <input type="submit", value="add" th:if="${success!=1}">
             </form>
             <div th:if="${success==1}">
                 <p>success!</p>
-                <a th:href="@{/article/list}">Go to list.</a>
+                <a th:href="@{/user/list}">Go to list.</a>
             </div>
         </div>
         <div th:if="${flag!='add'}">

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Test</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1>Users</h1>
+        <div th:if="${flag=='delete'&&user!=null}">
+            <p>Delete User</p>
+            <form method="POST" th:action="@{'/user/delete/' + ${id}}">
+                <p th:text="'User: ' + ${user.username}"></p>
+                <p>Note: this action cannot be recovered, be careful!</p>
+                <input type="submit" value="delete" th:if="${success!=1}">
+            </form>
+            <div th:if="${success==1}">
+                <p>success!</p>
+                <a th:href="@{/user/list}">Go back to list.</a>
+            </div>
+        </div>
+        <div th:if="${flag!='delete'||user==null}">
+            <p>Unknown error.</p>
+        </div>
+    </body>
+</html>

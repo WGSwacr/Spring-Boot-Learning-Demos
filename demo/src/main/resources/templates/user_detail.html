@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Test</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1>Users</h1>
+        <div th:if="${flag=='detail'&&user!=null}">
+            <p>User Detail</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th colspan="2">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user, stat:${user}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.password}"></td>
+                        <td><a th:href="@{'/user/update/' + ${id}}">Change Password</a></td>
+                        <td><a th:href="@{'/user/delete/' + ${id}}">Delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <a th:href="@{/user/list}">Go back to list.</a>
+        </div>
+        </div>
+        <div th:if="${flag!='detail'||user==null}">
+            <p>Unknown error.</p>
+        </div>
+    </body>
+</html>
