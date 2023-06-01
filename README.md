@@ -1,4 +1,4 @@
-# demo
+# Spring-Boot-Learning-Demos
 A Spring Boot project to learn how to write a basic website showing some articles with some simple user functions.
 
 # Requirements
