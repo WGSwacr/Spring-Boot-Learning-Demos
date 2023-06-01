@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.Dao.UserDaoImplement;
 import com.example.demo.Mapper.UserMapper;
@@ -24,6 +25,13 @@ public class User {
 
     @Autowired
     private UserMapper userMapper;
+
+    @GetMapping("/test")
+    @ResponseBody
+    public T_User userTest() {
+        // return userDaoImplement.login(T_User.builder().username("am").password("123").build());
+        return userMapper.selectUserByUsername("am");
+    }
 
     @GetMapping("/list")
     public String userList(ModelMap map) {
@@ -100,7 +108,7 @@ public class User {
     }
 
     @PostMapping("/login")
-    public String loginDone(ModelMap map, String username, String password) throws Exception {
+    public String loginDone(ModelMap map, String username, String password) {
         T_User t_User = T_User.builder().username(username).password(password).build();
         map.addAttribute("success", userDaoImplement.login(t_User));
         map.addAttribute("flag", "login");

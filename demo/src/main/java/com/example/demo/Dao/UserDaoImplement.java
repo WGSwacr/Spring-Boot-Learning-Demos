@@ -50,20 +50,16 @@ public class UserDaoImplement implements UserDao{
     }
 
     @Override
-    public int login(T_User t_User) throws Exception {
-        try {
-            T_User auth_t_User = userMapper.selectUserByUsername(t_User.getUsername());
-            if(auth_t_User==null) {
-                return 2;
-            } else {
+    public int login(T_User t_User) {
+        T_User auth_t_User = userMapper.selectUserByUsername(t_User.getUsername());
+            if(auth_t_User!=null) {
                 if(auth_t_User.getPassword() == t_User.getPassword()) {
                     return 0;
                 } else {
                     return 1;
                 }
+            } else {
+                return 2;
             }
-        } catch(Exception e) {
-            throw e;
-        }
     }
 }
