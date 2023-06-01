@@ -53,7 +53,7 @@ public class UserDaoImplement implements UserDao{
     public int login(T_User t_User) {
         T_User auth_t_User = userMapper.selectUserByUsername(t_User.getUsername());
             if(auth_t_User!=null) {
-                if(auth_t_User.getPassword() == t_User.getPassword()) {
+                if(auth_t_User.getPassword().equals(t_User.getPassword())) {
                     return 0;
                 } else {
                     return 1;
